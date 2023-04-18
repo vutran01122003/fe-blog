@@ -12,7 +12,7 @@ import UpdatePost from './pages/UpdatePost';
 import axios from 'axios';
 
 function App() {
-    axios.defaults.baseURL = process.env.REACT_APP_URL;
+    axios.defaults.baseURL = process.env.REACT_APP_URL_BASE_API;
     axios.defaults.withCredentials = true;
     return (
         <UserContextProvider>
