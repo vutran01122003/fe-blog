@@ -39,7 +39,7 @@ function PostPage() {
             <div className='post-page-img-wrapper'>
                 {cover && (
                     <img
-                        src={`${process.env.REACT_APP_URL}/public/images/${post.cover}`}
+                        src={`${process.env.REACT_APP_URL_BASE_API}/public/images/${post.cover}`}
                         alt=''
                     />
                 )}

@@ -10,7 +10,7 @@ function Post({ _id, title, summary, createdAt, cover, author }) {
                         <img
                             className='post-img'
                             alt='img'
-                            src={`${process.env.REACT_APP_URL}/public/images/${cover}`}
+                            src={`${process.env.REACT_APP_URL_BASE_API}/public/images/${cover}`}
                         />
                     )}
                 </Link>
