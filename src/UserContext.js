@@ -9,7 +9,7 @@ export function UserContextProvider({ children }) {
 
     useEffect(() => {
         axios
-            .post('/verify-token', {}, { withCredentials: 'include' })
+            .post('/verify-token', {}, { withCredentials: true })
             .then((respone) => {
                 setUserInfo(respone.data.data.username);
             })

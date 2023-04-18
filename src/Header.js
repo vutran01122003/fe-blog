@@ -31,7 +31,9 @@ function Header() {
         <header>
             <Link
                 className='logo'
-                onClick={() => (window.location.href = 'http://localhost:3000')}
+                onClick={() =>
+                    (window.location.href = process.env.REACT_APP_DOMAIN)
+                }
             >
                 MyBlog
             </Link>
