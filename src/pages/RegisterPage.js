@@ -19,7 +19,7 @@ function RegisterPage() {
             )
             .then((respone) => {
                 alert('register successs');
-                setUserInfo(respone.data.username);
+                setUserInfo(respone.data);
                 setRedirect(true);
             })
             .catch((e) => {

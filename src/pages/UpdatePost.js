@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import ReactQuillComponent from '../ReactQuillComponent';
 
 function UpdatePost() {
     const [title, setTitle] = useState('');
@@ -27,35 +26,6 @@ function UpdatePost() {
                 console.log(e);
             });
     }, [id]);
-
-    const modules = {
-        toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [
-                { list: 'ordered' },
-                { list: 'bullet' },
-                { indent: '-1' },
-                { indent: '+1' }
-            ],
-            ['link', 'image'],
-            ['clean']
-        ]
-    };
-
-    const formats = [
-        'header',
-        'bold',
-        'italic',
-        'underline',
-        'strike',
-        'blockquote',
-        'list',
-        'bullet',
-        'indent',
-        'link',
-        'image'
-    ];
 
     const createPost = (e) => {
         e.preventDefault();
@@ -110,7 +80,7 @@ function UpdatePost() {
                 }}
             />
             <span className='input-file'>
-                <span>Image: </span>
+                <span>Featured Images: </span>
                 <input
                     type='file'
                     onChange={(e) => {
@@ -120,15 +90,7 @@ function UpdatePost() {
                     accept='image/png, image/gif, image/jpeg'
                 />
             </span>
-            <ReactQuill
-                value={content}
-                onChange={(e) => {
-                    setContent(e);
-                }}
-                className='react-quill'
-                modules={modules}
-                formats={formats}
-            />
+            <ReactQuillComponent content setContent />
             <button className='post-btn'>Post</button>
         </form>
     );

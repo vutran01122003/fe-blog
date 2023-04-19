@@ -3,6 +3,9 @@ import Post from '../Post';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import { faFaceFrown } from '@fortawesome/free-regular-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function IndexPage() {
     let numPage = 1;
@@ -103,6 +106,12 @@ function IndexPage() {
                             &raquo;
                         </Link>
                     </div>
+                </div>
+            )}
+            {numPage === 0 && (
+                <div className='empty-search'>
+                    <FontAwesomeIcon icon={faFaceFrown} />
+                    <h3>No post results</h3>
                 </div>
             )}
         </>

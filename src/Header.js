@@ -14,11 +14,11 @@ function Header() {
     let { userInfo, setUserInfo } = useContext(UserContext);
     const [searchValueForm, setSearchValueForm] = useState('');
     const { setSearchValue } = useContext(UserContext);
-
+    const [hiddenLogo, setHiddenLogo] = useState(true);
     const logoutUser = (e) => {
         e.preventDefault();
         axios.post('/logout', {}, { withCredentials: true }).then(() => {
-            setUserInfo(null);
+            setUserInfo('');
         });
     };
 
@@ -35,7 +35,16 @@ function Header() {
                     (window.location.href = process.env.REACT_APP_DOMAIN)
                 }
             >
-                MyBlog
+                <img
+                    alt=''
+                    src={`${process.env.REACT_APP_URL_BASE_API}/public/logo/logo.png`}
+                    onError={(event) => {
+                        setHiddenLogo(false);
+                        event.target.style.display = 'none';
+                    }}
+                    onLoad={(event) => (event.target.style.display = 'block')}
+                ></img>
+                {!hiddenLogo && <h3>MyBlog</h3>}
             </Link>
             <form
                 className='header-search'
@@ -59,7 +68,9 @@ function Header() {
             {userInfo && (
                 <div>
                     <nav>
-                        <div className='author'>Welcome, {userInfo}</div>
+                        <div className='author'>
+                            Welcome, {userInfo.username}
+                        </div>
                     </nav>
                     <nav className='controls'>
                         <Link to={'/create'} className='new-post'>
@@ -86,8 +97,12 @@ function Header() {
 
             {!userInfo && (
                 <nav>
-                    <Link to={'/register'}>Register</Link>
-                    <Link to={'/login'}>Login</Link>
+                    <Link className='header-register' to={'/register'}>
+                        Register
+                    </Link>
+                    <Link className='header-login' to={'/login'}>
+                        Login
+                    </Link>
                 </nav>
             )}
         </header>

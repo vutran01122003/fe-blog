@@ -13,6 +13,7 @@ main {
     max-width: 900px;
     margin: 0 auto;
     font-weight: 500;
+    margin-top: 120px;
 }
 
 .post-img-wrapper {
@@ -35,19 +36,34 @@ img {
 }
 
 header {
+    position: fixed;
+    height: 120px;
     padding: 10px;
-    right: 0;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 35px;
     align-items: center;
-    gap: 10px
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 900px;
+    max-width: 100%;
+    background: #fff;
 }
 
 .header-search {
     height: 40px;
     display: flex;
     flex-basis: 40%;
+}
+
+.empty-search {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
 }
 
 .search-input {
@@ -84,6 +100,7 @@ header {
 
 nav {
     display: flex;
+    justify-content: center;
     gap: 15px;
     align-items: center;
 }
@@ -94,8 +111,19 @@ nav a, header .logo {
 }
 
 header .logo  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
+    height: 100%;   
 }
+
+header .logo img {
+    display: block;
+    height: 50%;
+    object-fit: contain;
+}
+
 
 .post {
     display: grid;
@@ -124,6 +152,16 @@ header .logo  {
         height: 100%;
         object-fit: cover;
         object-position: center center;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header .logo {
+        display: none;
+    }
+
+    header .logo {
+        flex-basis: 50%;
     }
 }
 
@@ -184,6 +222,10 @@ header .logo  {
     font-size: 30px;
 }
 
+.header-login, .header-register {
+    font-weight: bold;
+}
+
 .login, .register {
     display: flex;
     flex-direction: column;
@@ -197,6 +239,7 @@ header .logo  {
     padding: 5px 10px;
     border: 1px solid #333;
     outline: none;
+    font-weight: bold;
 }
 
 button {
@@ -210,6 +253,7 @@ button {
     border-radius: 8px;
     outline: none;
     border: 1px solid #333;
+    font-weight: bold;
 }
 
 .login button:active,
@@ -275,29 +319,34 @@ button {
     transform: scale(0.9);
 }
 
-.edit-btn {
+.control-btn {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     margin-left: 10px;
-    background: #000;
+    background: rgb(73, 72, 72);
     border-radius: 5px;
     padding: 5px 10px;
     transition: 0.1s linear;
 }
 
-.edit-btn:active {
+.control-btn:hover {
+    background:#000;
+}
+
+.control-btn.delete-btn:hover {
+    background: rgb(208, 65, 65);
+}
+
+.control-btn:active {
     transform: scale(0.9);
 }
 
-.edit-btn a:hover {
-    color: yellow;
-}
-
-.edit-btn a {
+.control-btn a {
     position: relative;
-    top: -1px;
     display: block;
+    height: 100%;
+    width: 100%;
     text-decoration: none;
     color: #fff;
     display: flex;
@@ -310,6 +359,7 @@ button {
 }
 
 .pagination-wrapper {
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -351,7 +401,8 @@ button {
 }
 
 .controls a {
-    display: block;
+    display: flex;
+    gap: 5px;
     color: rgb(73, 72, 72);
     text-decoration: none; 
     transition: 0.15s linear;
@@ -372,4 +423,44 @@ button {
 
 .input-file > input {
     border: none;
+}
+
+.last-line {
+    display: block;
+    margin-top: 100px;
+    border-block-color: black;
+    border-block-end-width: 2px;
+}
+
+.footer {
+    margin: 30px;
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+}
+
+.footer-list li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.copyright {
+    margin: 30px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.copyright span {
+    margin-left: 3px;
+}
+
+.username-contact {
+    text-decoration: none;
+    color: #17ae84;
+    transition: 0.1s linear;
 }

@@ -7,14 +7,14 @@ function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const { setUserInfo } = useContext(UserContext);
+    const { userInfo, setUserInfo } = useContext(UserContext);
     const LoginUser = (e) => {
         e.preventDefault();
         axios
             .post('/login', { username, password }, { withCredentials: true })
             .then((respone) => {
                 alert('login success');
-                setUserInfo(respone.data.username);
+                setUserInfo(respone.data);
                 setRedirect(true);
             })
             .catch((e) => {
@@ -22,6 +22,7 @@ function LoginPage() {
             });
     };
 
+    console.log(userInfo);
     if (redirect) {
         return <Navigate to={'/'} />;
     }

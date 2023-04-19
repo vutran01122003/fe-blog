@@ -11,10 +11,10 @@ export function UserContextProvider({ children }) {
         axios
             .post('/verify-token', {}, { withCredentials: true })
             .then((respone) => {
-                setUserInfo(respone.data.data.username);
+                setUserInfo(respone.data.data);
             })
             .catch((e) => {
-                setUserInfo(null);
+                setUserInfo('');
             });
     }, []);
 

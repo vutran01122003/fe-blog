@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import ReactQuillComponent from '../ReactQuillComponent';
 
 function CreatePost() {
     const [title, setTitle] = useState('');
@@ -10,35 +9,6 @@ function CreatePost() {
     const [content, setContent] = useState('');
     const [file, setFile] = useState('');
     const [redirect, setRedirect] = useState(false);
-
-    const modules = {
-        toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [
-                { list: 'ordered' },
-                { list: 'bullet' },
-                { indent: '-1' },
-                { indent: '+1' }
-            ],
-            ['link', 'image'],
-            ['clean']
-        ]
-    };
-
-    const formats = [
-        'header',
-        'bold',
-        'italic',
-        'underline',
-        'strike',
-        'blockquote',
-        'list',
-        'bullet',
-        'indent',
-        'link',
-        'image'
-    ];
 
     const createPost = (e) => {
         e.preventDefault();
@@ -91,7 +61,7 @@ function CreatePost() {
                 }}
             />
             <span className='input-file'>
-                <span>Image: </span>
+                <span>Featured Image: </span>
                 <input
                     type='file'
                     onChange={(e) => {
@@ -101,15 +71,7 @@ function CreatePost() {
                     accept='image/png, image/gif, image/jpeg'
                 />
             </span>
-            <ReactQuill
-                value={content}
-                onChange={(e) => {
-                    setContent(e);
-                }}
-                className='react-quill'
-                modules={modules}
-                formats={formats}
-            />
+            <ReactQuillComponent content={content} setContent={setContent} />
             <button className='post-btn'>Post</button>
         </form>
     );

@@ -22,6 +22,18 @@ function PostPage() {
     }, [id]);
 
     const formattedDate = format(date, 'MMM d, yyyy');
+    const deletePost = (e) => {
+        e.preventDefault();
+        axios
+            .delete(`/delete/${id}`)
+            .then((data) => {
+                window.location.href = process.env.REACT_APP_DOMAIN;
+            })
+            .catch((e) => {
+                alert('can not delete post');
+                console.log(e);
+            });
+    };
 
     return (
         <div className='post-page'>
@@ -29,9 +41,15 @@ function PostPage() {
             <span className='post-page-info'>
                 <span className='post-page-info-time'>{formattedDate}</span>
                 <span className='post-page-info-username'> by @{username}</span>
-                {userInfo === username && (
-                    <span className='edit-btn'>
-                        <Link to={`/edit/${id}`}>Edit post</Link>
+                {(userInfo.username === username ||
+                    userInfo.role === 'admin') && (
+                    <span className='post-page-controls'>
+                        <span className='control-btn edit-btn'>
+                            <Link to={`/edit/${id}`}>Edit post</Link>
+                        </span>
+                        <span className='control-btn delete-btn'>
+                            <Link onClick={deletePost}>Delete post</Link>
+                        </span>
                     </span>
                 )}
             </span>
