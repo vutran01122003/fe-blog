@@ -36,10 +36,12 @@ img {
 }
 
 header {
+    z-index: 99;
     position: fixed;
     height: 120px;
     padding: 10px;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     left: 50%;
@@ -139,9 +141,12 @@ header .logo img {
 @media screen and (max-width: 739px) {
     .post {
         grid-template-columns: 1fr;
-        height: 500px;
+        height: 530px;
     }
 
+    header {
+        height: 100px;
+    }
     .post-img-wrapper  {
         width: 100%;
         height: 300px;
@@ -156,13 +161,11 @@ header .logo img {
 }
 
 @media screen and (max-width: 450px) {
+    
     header .logo {
-        display: none;
+        flex-basis: 20%;
     }
 
-    header .logo {
-        flex-basis: 50%;
-    }
 }
 
 .post-text a {
