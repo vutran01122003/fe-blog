@@ -31,7 +31,6 @@ function PostPage() {
             })
             .catch((e) => {
                 alert('can not delete post');
-                console.log(e);
             });
     };
 

@@ -48,7 +48,7 @@ function IndexPage() {
                 setPosts(respone.data);
             })
             .catch((e) => {
-                console.log(e);
+                alert('Không thể tải trang');
             });
     };
 
@@ -60,7 +60,7 @@ function IndexPage() {
                 SetNumPost(respone.data.result);
             })
             .catch((e) => {
-                console.log(e);
+                alert('Không thể tải trang');
             });
         // eslint-disable-next-line
     }, [searchValue]);

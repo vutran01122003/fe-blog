@@ -268,7 +268,7 @@ button {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    padding: 30px;
+    padding: 20px;
     background-color: #f3f3f3;
     box-shadow: 0 0 5px #333;
 }
@@ -310,12 +310,17 @@ button {
     color:#727171;
 }
 
+.post-page-content p {
+    margin-bottom: 8px;
+}
+
 .post-page-img-wrapper {
     display: flex;
     max-height: 400px;
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .post-btn:active {

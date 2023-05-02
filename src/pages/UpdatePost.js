@@ -23,7 +23,7 @@ function UpdatePost() {
                 setCover(cover);
             })
             .catch((e) => {
-                console.log(e);
+                alert("Không thể tải trang")
             });
     }, [id]);
 
@@ -47,7 +47,6 @@ function UpdatePost() {
                     setRedirect(true);
                 })
                 .catch((e) => {
-                    console.log(e);
                     alert('Lỗi đăng nhập');
                     window.location.href = process.env.REACT_APP_DOMAIN;
                 });
@@ -90,7 +89,7 @@ function UpdatePost() {
                     accept='image/png, image/gif, image/jpeg'
                 />
             </span>
-            <ReactQuillComponent content setContent />
+            <ReactQuillComponent  content={content} setContent={setContent}/>
             <button className='post-btn'>Post</button>
         </form>
     );

@@ -7,7 +7,7 @@ function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const { userInfo, setUserInfo } = useContext(UserContext);
+    const { setUserInfo } = useContext(UserContext);
     const LoginUser = (e) => {
         e.preventDefault();
         axios
@@ -21,8 +21,7 @@ function LoginPage() {
                 alert('login failed');
             });
     };
-
-    console.log(userInfo);
+    
     if (redirect) {
         return <Navigate to={'/'} />;
     }
