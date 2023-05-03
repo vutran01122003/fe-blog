@@ -108,6 +108,8 @@ function IndexPage() {
                 <div className='empty-search'>
                     <FontAwesomeIcon icon={faFaceFrown} />
                     <h3>No post results</h3>
+                    <h3 style={{marginTop: "100px"}}>Nếu trang tải chậm thì có thể server đang ở chế độ ngủ.</h3>
+                    <a href='https://be-blog.onrender.com/' target='_blank' rel="noreferrer">Click vào đây để bật server</a>
                 </div>
             )}
         </>
