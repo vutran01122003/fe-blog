@@ -12,6 +12,21 @@ function UpdatePost() {
     const [redirect, setRedirect] = useState(false);
     const { id } = useParams();
 
+    const updatePostHandle = (data) => {
+        axios
+            .put(`/post/${id}`, data, {
+                withCredentials: true
+            })
+            .then(() => {
+                alert('Create new post successfully');
+                setRedirect(true);
+            })
+            .catch((e) => {
+                alert('Lỗi đăng nhập');
+                window.location.href = process.env.REACT_APP_DOMAIN;
+            }); 
+    }
+
     useEffect(() => {
         axios
             .get(`/post/${id}`)
@@ -33,26 +48,16 @@ function UpdatePost() {
         data.set('content', content);
         data.set('cover', cover);
         const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = function() {
-            data.set('file', reader.result);
-            if (!title || !summary || !content) {
-                alert('Empty input');
-            } else {
-                axios
-                    .put(`/post/${id}`, data, {
-                        withCredentials: true
-                    })
-                    .then(() => {
-                        alert('Create new post successfully');
-                        setRedirect(true);
-                    })
-                    .catch((e) => {
-                        alert('Lỗi đăng nhập');
-                        window.location.href = process.env.REACT_APP_DOMAIN;
-                    }); 
-        }
-        }
+        if(file) {
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                data.set('file',  reader.result);
+                updatePostHandle(data);
+            }   
+        } else {
+            data.set('file', '');
+            updatePostHandle(data);
+        }      
     };
 
     if (redirect) return <Navigate to={`/post/${id}`} />;
