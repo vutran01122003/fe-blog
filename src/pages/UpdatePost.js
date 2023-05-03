@@ -22,9 +22,7 @@ function UpdatePost() {
                 setContent(content);
                 setCover(cover);
             })
-            .catch((e) => {
-                alert("Không thể tải trang")
-            });
+            .catch((e) => {});
     }, [id]);
 
     const createPost = (e) => {
@@ -34,22 +32,26 @@ function UpdatePost() {
         data.set('summary', summary);
         data.set('content', content);
         data.set('cover', cover);
-        data.set('file', file);
-        if (!title || !summary || !content) {
-            alert('Empty input');
-        } else {
-            axios
-                .put(`/post/${id}`, data, {
-                    withCredentials: true
-                })
-                .then(() => {
-                    alert('Create new post successfully');
-                    setRedirect(true);
-                })
-                .catch((e) => {
-                    alert('Lỗi đăng nhập');
-                    window.location.href = process.env.REACT_APP_DOMAIN;
-                });
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function() {
+            data.set('file', reader.result);
+            if (!title || !summary || !content) {
+                alert('Empty input');
+            } else {
+                axios
+                    .put(`/post/${id}`, data, {
+                        withCredentials: true
+                    })
+                    .then(() => {
+                        alert('Create new post successfully');
+                        setRedirect(true);
+                    })
+                    .catch((e) => {
+                        alert('Lỗi đăng nhập');
+                        window.location.href = process.env.REACT_APP_DOMAIN;
+                    }); 
+        }
         }
     };
 

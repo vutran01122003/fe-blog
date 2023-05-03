@@ -16,22 +16,27 @@ function CreatePost() {
         data.set('title', title);
         data.set('summary', summary);
         data.set('content', content);
-        data.set('file', file);
-        if (!title || !summary || !content || !file) {
-            alert('Empty input');
-        } else {
-            axios
-                .post('/post', data, {
-                    withCredentials: true
-                })
-                .then(() => {
-                    alert('Create new post successfully');
-                    setRedirect(true);
-                })
-                .catch((e) => {
-                    alert('Lỗi đăng nhập');
-                    window.location.href = process.env.REACT_APP_DOMAIN;
-                });
+            
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function() {
+            data.set('file', reader.result);
+            if (!title || !summary || !content || !file) {
+                alert('Empty input');
+            } else {
+                axios
+                    .post('/post', data, {
+                        withCredentials: true
+                    })
+                    .then(() => {
+                        alert('Create new post successfully');
+                        setRedirect(true);
+                    })
+                    .catch((e) => {
+                        alert('Lỗi đăng nhập');
+                        window.location.href = process.env.REACT_APP_DOMAIN;
+                    });
+            }
         }
     };
 

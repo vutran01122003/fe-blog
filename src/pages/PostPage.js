@@ -29,9 +29,7 @@ function PostPage() {
             .then((data) => {
                 window.location.href = process.env.REACT_APP_DOMAIN;
             })
-            .catch((e) => {
-                alert('can not delete post');
-            });
+            .catch((e) => {});
     };
 
     return (
@@ -56,7 +54,7 @@ function PostPage() {
             <div className='post-page-img-wrapper'>
                 {cover && (
                     <img
-                        src={`${process.env.REACT_APP_URL_BASE_API}/public/images/${post.cover}`}
+                        src={`${post.cover}`}
                         alt=''
                     />
                 )}

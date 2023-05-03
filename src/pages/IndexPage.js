@@ -47,9 +47,7 @@ function IndexPage() {
             .then((respone) => {
                 setPosts(respone.data);
             })
-            .catch((e) => {
-                alert('Không thể tải trang');
-            });
+            .catch((e) => {});
     };
 
     useEffect(() => {
@@ -59,9 +57,7 @@ function IndexPage() {
             .then((respone) => {
                 SetNumPost(respone.data.result);
             })
-            .catch((e) => {
-                alert('Không thể tải trang');
-            });
+            .catch((e) => {});
         // eslint-disable-next-line
     }, [searchValue]);
 
