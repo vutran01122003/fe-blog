@@ -35,7 +35,7 @@ img {
 }
 
 header {
-    z-index: 99;
+    z-index: 10;
     position: fixed;
     height: 120px;
     padding: 10px;

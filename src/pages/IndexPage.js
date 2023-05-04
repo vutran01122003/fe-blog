@@ -7,6 +7,7 @@ import { faFaceFrown } from '@fortawesome/free-regular-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { Backdrop, CircularProgress} from '@material-ui/core';
 function IndexPage() {
     let numPage = 1;
 
@@ -26,6 +27,7 @@ function IndexPage() {
             getPage(page, limit);
         }
     };
+
 
     const getNextPage = (currentPage) => {
         const page = currentPage + 1;
@@ -66,8 +68,16 @@ function IndexPage() {
 
     return (
         <>
-            {posts.length > 0 &&
-                posts.map((post, index) => <Post {...post} key={index} />)}
+            {
+                posts.length > 0 ? posts.map((post, index) => <Post {...post} key={index} />) :
+                <Backdrop
+                    sx={{ color: '#fff'}}
+                    open={true}
+                    style={{zIndex: 999}}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>    
+            }
             {numPage > 1 && (
                 <div className='pagination-wrapper'>
                     <div className='pagination'>
@@ -108,8 +118,6 @@ function IndexPage() {
                 <div className='empty-search'>
                     <FontAwesomeIcon icon={faFaceFrown} />
                     <h3>No post results</h3>
-                    <h3 style={{marginTop: "100px"}}>Nếu trang tải chậm thì có thể server đang ở chế độ ngủ.</h3>
-                    <h3>Vui lòng chờ một lúc và tải lại trang</h3>
                 </div>
             )}
         </>
