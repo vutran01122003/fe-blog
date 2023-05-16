@@ -71,11 +71,13 @@ function IndexPage() {
             {
                 posts.length > 0 ? posts.map((post, index) => <Post {...post} key={index} />) :
                 <Backdrop
+                    className='backdrop'
                     sx={{ color: '#fff'}}
                     open={true}
                     style={{zIndex: 999}}
                 >
-                    <CircularProgress color="inherit" />
+                    <CircularProgress style={{color: 'white'}} />
+                    <h3>Vui lòng chờ, máy chủ cần thời gian để khởi động</h3>
                 </Backdrop>    
             }
             {numPage > 1 && (

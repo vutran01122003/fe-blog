@@ -78,6 +78,13 @@ header {
     height: 100%;
 }
 
+.backdrop {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 20px
+}
+
 .search-btn {
     width: 50px;
     outline: none;
